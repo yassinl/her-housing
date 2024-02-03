@@ -10,11 +10,13 @@
   import { Heading, P } from "flowbite-svelte";
   import { ArrowRightOutline } from "flowbite-svelte-icons";
   import HousingGrid from "$lib/components/HousingGrid.svelte";
+
+  export let data;
 </script>
 
 <Title />
 <SearchBar />
-<HousingGrid />
+<HousingGrid cards={data.cards}/>
 
 <main class="container">
   <h1>Find Your Dream Home</h1>

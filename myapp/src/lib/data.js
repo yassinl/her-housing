@@ -1,13 +1,13 @@
 // const puppeteer = require('puppeteer');
 
-const { readFileSync, writeFileSync } = require("fs");
+import {readFileSync, writeFileSync} from "fs";
 
 /**
  * 
  * @param {number} page Page number 
  * @returns 
  */
-async function fetchHousingData(page) {
+export async function fetchHousingData(page) {
     return await fetch(`https://offcampus.vt.edu/bff/listing/search/list?url=%2Fhousing%2Fpage-${page}&seed=6794&locale=en`, {
         "headers": {
           "accept": "application/json, text/plain, */*",
@@ -30,7 +30,7 @@ async function fetchHousingData(page) {
         "credentials": "include"
       }).then((response) => {
         return response.json();
-      })
+      });
 }
 
 /**
