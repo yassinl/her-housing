@@ -1,16 +1,29 @@
 <script>
-  import { Search, Button } from 'flowbite-svelte';
+  import { Alert } from 'flowbite-svelte';
   import { MicrophoneSolid, SearchOutline } from 'flowbite-svelte-icons';
   function handleVoiceBtn() {
     alert('You clicked voice button');
   }
+  import SearchBar from '$lib/components/SearchBar.svelte';
+  import Title from '$lib/components/Title.svelte';
+
+  import { Heading, P } from 'flowbite-svelte';
+  import { ArrowRightOutline } from 'flowbite-svelte-icons';
+
+
+
 </script>
+
+
+<Title/>
+<SearchBar/>
+
 
 <style>
 </style>
   
   <main class="container">
-    <h2>About Us</h2>
+    <h1>Find Your Dream Home</h1>
     <p>
       We're working to empower women !!!!
     </p>
@@ -21,17 +34,8 @@
       Phone: 123-456-7890
     </p>
 
-    <form class="flex gap-2">
-      <Search size="md" class="flex gap-2 items-center" placeholder="Search Mockups, Logos, Design Templates...">
-        <button type="button" on:click={handleVoiceBtn} class="outline-none">
-          <MicrophoneSolid class="w-4 h-4 me-2" />
-        </button>
-      </Search>
-      <Button size="sm">
-        <SearchOutline class="w-5 h-5 me-2 -ms-1" />
-        Search
-      </Button>
-    </form>
+
+
 
 
 
