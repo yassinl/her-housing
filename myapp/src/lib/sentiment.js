@@ -3,10 +3,9 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const GOOGLE_API_KEY = "AIzaSyBpFYOFasfilu9aWo0v6lc-i0ANR7ZQT3g";
 
-function openPageFile(page) {
-    return JSON.parse(readFileSync(`data/page-${page}.json`).toString());
-}
-
+/**
+ * @param {string} placeName
+ */
 async function getReviewsForPlace(placeName) {
     console.log(`Attemping to find place id for ${placeName}`);
 
@@ -42,6 +41,9 @@ const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // use for text-only
 const globalPrompt = readFileSync('prompt.txt').toString();
 
+/**
+ * @param {any[] | null} reviews
+ */
 async function generateSentiment(reviews) {
     if (reviews == null) {
         throw new Error("No reviews found in generateSentiment()");
@@ -59,19 +61,25 @@ async function generateSentiment(reviews) {
     return text;
 }
 
-async function main() {
-    const places = openPageFile(1)["data"];
-    let idx = 0;
-    while (places[idx] != null) {
-        const place = places[idx]["seoName"];
-
-        await getReviewsForPlace(place)
+/**
+ * @param {string} placeName 
+ * @returns 
+ */
+export async function generateSentimentForPlace(placeName) {
+    return await getReviewsForPlace(placeName)
             .then((reviews) => generateSentiment(reviews))
-            .then((list) => console.log(list))
             .catch((err) => console.error(err));
-
-        idx++;
-    }
 }
 
-main();
+// async function main() {
+//     const places = openPageFile(1)["data"];
+//     let idx = 0;
+//     while (places[idx] != null) {
+//         const place = places[idx]["seoName"];    
+//             await getReviewsForPlace(placeName)
+//             .then((reviews) => generateSentiment(reviews))
+//             .then((list) => console.log(list))
+//             .catch((err) => console.error(err));
+//         idx++;
+//     }
+// }
