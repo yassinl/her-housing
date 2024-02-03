@@ -1,8 +1,4 @@
 <style>
-  /* Import styles from the external CSS file */
-  @import "../styles/LandingPage.css";
-
-  /* Additional component-specific styles can be defined here */
 </style>
   
   <main class="container">
