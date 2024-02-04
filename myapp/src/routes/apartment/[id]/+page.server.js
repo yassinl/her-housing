@@ -46,6 +46,7 @@ export async function load({ params }) {
     } else {
         imageUrl = "static/placeholder.webp"
     }
+    imageUrl = imageUrl.replace(/{options}/g, '117');
 
     const address = place["geography"]["streetAddress"];
     const description = place["propertyType"];

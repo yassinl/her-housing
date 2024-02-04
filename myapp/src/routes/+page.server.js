@@ -10,13 +10,14 @@ export async function load() {
         const [distance, walking] = await calculateCommute(entry["geography"]["streetAddress"] + " Blacksburg, VA", 'walking');
 
         let image;
-        if(entry["media"]["images"][0]["source"] != null) {
+        if (entry["media"]["images"][0]["source"] != null) {
             image = entry["media"]["images"][0]["source"];
-        } else if(entry["media"]["mainPhoto"]["source"] != null) {
+        } else if (entry["media"]["mainPhoto"]["source"] != null) {
             image = entry["media"]["mainPhoto"]["source"];
         } else {
             image = "static/placeholder.webp";
         }
+        image = image.replace(/{options}/g, '117');
 
         return {
             title: entry["name"],
@@ -28,5 +29,5 @@ export async function load() {
             distance: distance
         };
     }));
-    return {cards};
+    return { cards };
 }
