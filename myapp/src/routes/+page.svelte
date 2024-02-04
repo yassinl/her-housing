@@ -22,7 +22,6 @@
 
 <Title />
 <div class="mx-auto w-1/2 relative">
-  <SearchBar />
   <SearchBar2 />
 </div>
 
