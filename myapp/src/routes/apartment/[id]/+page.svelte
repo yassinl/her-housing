@@ -13,7 +13,8 @@
       pros: data.pros,
       cons: data.cons,
       commute: data.commuteTime,
-      amenities: data.amenities
+      amenities: data.amenities,
+      phone: data.phone
     };
   </script>
   

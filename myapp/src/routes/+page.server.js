@@ -6,16 +6,26 @@ export async function load() {
     let data = dataRaw["data"];
 
     const cards = await Promise.all(data.map(async (entry, i) => {
-        const transit = await calculateCommute(entry["geography"]["streetAddress"] + " Blacksburg, VA");
-        const walking = await calculateCommute(entry["geography"]["streetAddress"] + " Blacksburg, VA", 'walking');
+        const [x, transit] = await calculateCommute(entry["geography"]["streetAddress"] + " Blacksburg, VA");
+        const [distance, walking] = await calculateCommute(entry["geography"]["streetAddress"] + " Blacksburg, VA", 'walking');
+
+        let image;
+        if(entry["media"]["images"][0]["source"] != null) {
+            image = entry["media"]["images"][0]["source"];
+        } else if(entry["media"]["mainPhoto"]["source"] != null) {
+            image = entry["media"]["mainPhoto"]["source"];
+        } else {
+            image = "static/placeholder.webp";
+        }
 
         return {
             title: entry["name"],
-            imageUrl: entry["media"]["images"][0]["source"],
+            imageUrl: image,
             description: entry["floorPlanSummary"]["price"]["formatted"],
             id: i,
             transit: transit,
-            walking: walking
+            walking: walking,
+            distance: distance
         };
     }));
     return {cards};

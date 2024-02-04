@@ -24,11 +24,12 @@ export async function load({ params }) {
     }
 
     let imageUrl;
-
-    if (place["media"] == null) {
-        imageUrl = "none.jpg";
-    } else {
+    if(place["media"]["images"][0]["source"] != null) {
+        imageUrl = place["media"]["images"][0]["source"];
+    } else if(place["media"]["mainPhoto"]["source"] != null) {
         imageUrl = place["media"]["mainPhoto"]["source"];
+    } else {
+        imageUrl = "static/placeholder.webp"
     }
 
     const address = place["geography"]["streetAddress"];
@@ -39,11 +40,13 @@ export async function load({ params }) {
     const longitude = place["geography"]["longitude"];
     const safety = await safeScore(latitude, longitude);
 
-    const commuteTime = await calculateCommute(place["geography"]["streetAddress"] + " Blacksburg, Virginia");
+    const [_, commuteTime] = await calculateCommute(place["geography"]["streetAddress"] + " Blacksburg, Virginia");
 
     const amenities = place["amenityGroups"].map((entry) => {
         return {name: entry["categoryName"], items: entry["items"]};
     });
 
-    return { pros, cons, imageUrl, address, description, rentPrice, safety, commuteTime, amenities };
+    const phone = place["leads"]["phone"]["formatted"];
+
+    return { pros, cons, imageUrl, address, description, rentPrice, safety, commuteTime, amenities, phone };
 }

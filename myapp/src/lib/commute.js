@@ -20,15 +20,14 @@ async function getBusCommuteTime(apiKey, origin, destination, mode = 'transit') 
         const route = data.routes[0];
         const legs = route.legs[0];
         const durationText = legs.duration.text;
-        return durationText;
+        const distance = legs.distance.text;
+        return [distance, durationText];
     } else {
         return "Error: Unable to retrieve commute time.";
     }
 }
 
 export async function calculateCommute(destinationAddress, mode = 'transit') {
-    const commuteTime = await getBusCommuteTime(apiKey, originAddress, destinationAddress, mode);
-
     // console.log(`${mode} commute time from ${originAddress} to ${destinationAddress}: ${commuteTime}`);
-    return commuteTime;
+    return await getBusCommuteTime(apiKey, originAddress, destinationAddress, mode);
 }

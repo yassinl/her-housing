@@ -32,6 +32,16 @@
           <li>{con}</li>
         {/each}
       </ul>
+      <div class="mt-4">
+        <h3 class="text-xl font-semibold mb-2">Contact Seller</h3>
+        <p class="text-gray-600">For more information or to schedule a viewing, contact the seller:</p>
+        <div class="mt-4">
+          <p class="text-lg font-semibold">Seller Information</p>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>Phone: {apartment.phone}</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="bg-accent p-4 rounded-md">
       <h3 class="text-xl font-semibold mb-2">Amenities</h3>
