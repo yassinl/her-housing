@@ -8,7 +8,7 @@
 
 	
 
-		<nav>
+		<nav class="navbar decoration-8 font-bold">
 		<ul>
 			<li>
 				<a href="/blog">Blog</a>
@@ -27,6 +27,10 @@
 </header>
 
 <style>
+
+	a:hover {
+    color: purple; /* Change to your desired hover color */
+  }
 	header {
 		padding: 1rem;
 		background: lightskyblue;
@@ -43,7 +47,13 @@
 	}
 
 	a {
+		color: white;
+    	text-decoration: none;
+    	margin-left: 1rem;
+    	transition: color 0.3s ease;
 		text-decoration: none;
 		color: inherit;
+		
 	}
+	
 </style>

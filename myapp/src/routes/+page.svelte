@@ -10,24 +10,42 @@
   import { Heading, P } from "flowbite-svelte";
   import { ArrowRightOutline } from "flowbite-svelte-icons";
   import HousingGrid from "$lib/components/HousingGrid.svelte";
+  import Dropdown from "$lib/components/Dropdown.svelte";
+  import GenericSearch from "$lib/components/GenericSearchBar.svelte";
+  import PriceSlider from "$lib/components/PriceSlider.svelte";
+  // import GenericSearchBar from "$lib/components/GenericSearchBar.svelte";
 
   export let data;
 </script>
 
 <Title />
-<SearchBar />
-<HousingGrid cards={data.cards} />
+<div class="mx-auto w-1/2 relative">
+  <SearchBar/>
+  <SearchBar/>
+  <SearchBar/>
+</div>
+
+<div class="mx-auto w-1/2 relative">
+  <Dropdown/>
+</div>
+
+<div class="mx-auto w-1/2 relative">
+<PriceSlider/>  
+</div>
+
+<div class="">
+  <HousingGrid cards={data.cards} />
+</div>
+
 
 <main class="container">
   <h1>Find Your Dream Home</h1>
   <p>We're working to empower women !!!!</p>
 
   <h2>Contact Us</h2>
-  <p>
-    Email: contact@example.com<br />
-    Phone: 123-456-7890
-  </p>
 </main>
 
 <style>
+
+
 </style>
