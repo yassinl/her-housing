@@ -11,6 +11,9 @@
   import { ArrowRightOutline } from "flowbite-svelte-icons";
   import HousingGrid from "$lib/components/HousingGrid.svelte";
   import Dropdown from "$lib/components/Dropdown.svelte";
+  import GenericSearch from "$lib/components/GenericSearchBar.svelte";
+  import PriceSlider from "$lib/components/PriceSlider.svelte";
+  // import GenericSearchBar from "$lib/components/GenericSearchBar.svelte";
 
   export let data;
 </script>
@@ -18,13 +21,19 @@
 <Title />
 <div class="mx-auto w-1/2 relative">
   <SearchBar/>
+  <SearchBar/>
+  <SearchBar/>
 </div>
 
+<div class="mx-auto w-1/2 relative">
+  <Dropdown/>
+</div>
 
-<Dropdown/>
+<div class="mx-auto w-1/2 relative">
+<PriceSlider/>  
+</div>
 
-
-<div class="py-96">
+<div class="">
   <HousingGrid cards={data.cards} />
 </div>
 
