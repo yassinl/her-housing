@@ -16,7 +16,7 @@
 
 <Title />
 <SearchBar />
-<HousingGrid cards={data.cards}/>
+<HousingGrid cards={data.cards} />
 
 <main class="container">
   <h1>Find Your Dream Home</h1>

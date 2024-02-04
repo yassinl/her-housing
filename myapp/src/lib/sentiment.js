@@ -1,5 +1,5 @@
-const { readFileSync } = require("fs");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import {readFileSync} from "fs";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GOOGLE_API_KEY = "AIzaSyBpFYOFasfilu9aWo0v6lc-i0ANR7ZQT3g";
 
@@ -39,7 +39,7 @@ async function getReviewsForPlace(placeName) {
 
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // use for text-only
-const globalPrompt = readFileSync('prompt.txt').toString();
+const globalPrompt = readFileSync(process.cwd()+'/prompt.txt').toString();
 
 /**
  * @param {any[] | null} reviews
