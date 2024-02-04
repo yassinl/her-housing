@@ -8,7 +8,7 @@
   
   <div>
   <form class="flex gap-2">
-    <Search size="md" class="" placeholder="Size">
+    <Search size="md" class="" placeholder="Location">
     </Search>
 
   </form>
