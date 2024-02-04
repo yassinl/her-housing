@@ -22,32 +22,19 @@
 
 <Title />
 <div class="mx-auto w-1/2 relative">
-  <SearchBar/>
-  <SearchBar2/>
+  <SearchBar />
+  <SearchBar2 />
 </div>
 
 <div class="mx-auto w-1/2 relative">
-  <Dropdown/>
+  <Dropdown />
 </div>
 
 <div class="mx-auto w-1/2 relative">
-<PriceSlider/>
-<SizeSlider/>  
+  <PriceSlider />
+  <SizeSlider />
 </div>
 
 <div class="">
   <HousingGrid cards={data.cards} />
 </div>
-
-
-<main class="container">
-  <h1>Find Your Dream Home</h1>
-  <p>We're working to empower women !!!!</p>
-
-  <h2>Contact Us</h2>
-</main>
-
-<style>
-
-
-</style>

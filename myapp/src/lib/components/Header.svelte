@@ -33,7 +33,7 @@
   }
 	header {
 		padding: 1rem;
-		background: lightskyblue;
+		background: #f0d2dc;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
