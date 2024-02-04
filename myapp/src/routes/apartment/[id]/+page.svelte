@@ -9,11 +9,12 @@
       address: data.address,
       description: data.description,
       rentPrice: data.rentPrice,
-      safetyScore: 8.5,
-      // pros: ['Spacious rooms', 'Modern amenities', 'Close to public transportation'],
-      // cons: ['Limited parking space', 'No pet-friendly policy'],
+      safetyScore: data.safety,
       pros: data.pros,
-      cons: data.cons
+      cons: data.cons,
+      commute: data.commuteTime,
+      amenities: data.amenities,
+      phone: data.phone
     };
   </script>
   
