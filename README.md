@@ -1,2 +1,2 @@
 # her-housing
-this is vt hacks with jerico, drew, and elori
+this is hack violet with jerico, drew, and elori

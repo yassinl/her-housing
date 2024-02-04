@@ -10,13 +10,24 @@
   import { Heading, P } from "flowbite-svelte";
   import { ArrowRightOutline } from "flowbite-svelte-icons";
   import HousingGrid from "$lib/components/HousingGrid.svelte";
+  import Dropdown from "$lib/components/Dropdown.svelte";
 
   export let data;
 </script>
 
 <Title />
-<SearchBar />
-<HousingGrid cards={data.cards} />
+<div class="mx-auto w-1/2 relative">
+  <SearchBar/>
+</div>
+
+<div class="mx-auto w-1/2">
+<Dropdown/>
+</div>
+
+<div>
+  <HousingGrid cards={data.cards} />
+</div>
+
 
 <main class="container">
   <h1>Find Your Dream Home</h1>
@@ -30,4 +41,6 @@
 </main>
 
 <style>
+
+
 </style>
