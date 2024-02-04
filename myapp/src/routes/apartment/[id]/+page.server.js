@@ -7,9 +7,10 @@ export async function load({ params }) {
 
     const place = data[params.id];
 
-    const sentiment = await generateSentimentForPlace(place["seoName"]);
+    console.log(place["seoName"].split("Now")[0])
+    const sentiment = await generateSentimentForPlace(place["seoName"].split("Now Accepting")[0]);
     // console.log(sentiment);
-    let [pros, cons] = [["pros"], ["cons"]];
+    let [pros, cons] = [["No user feedback received"], ["No user feedback received"]];
     try {
         [pros, cons] = sentiment.split("Cons:");
 
