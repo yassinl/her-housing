@@ -6,7 +6,7 @@
     }
   </script>
   
-  <div class="mx-auto w-1/2 relative">
+  <div>
   <form class="flex gap-2">
     <Search size="md" class="" placeholder="Search for an awesome place to live">
       <button type="button" on:click={handleVoiceBtn} class="outline-none">
