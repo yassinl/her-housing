@@ -6,8 +6,9 @@
     }
   </script>
   
+  <div class="mx-auto w-1/2 relative">
   <form class="flex gap-2">
-    <Search size="md" class="flex gap-2 items-center" placeholder="Search Mockups, Logos, Design Templates...">
+    <Search size="md" class="" placeholder="Search for an awesome place to live">
       <button type="button" on:click={handleVoiceBtn} class="outline-none">
         <MicrophoneSolid class="w-4 h-4 me-2" />
       </button>
@@ -17,3 +18,5 @@
       Search
     </Button>
   </form>
+
+</div>
