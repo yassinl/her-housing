@@ -5,10 +5,10 @@
     export let data;
 
     let apartment = {
-      imageUrl: 'path/to/apartment-image.jpg',
-      address: '123 Main St, Cityville',
-      description: 'A beautiful apartment with great amenities and a stunning view.',
-      rentPrice: 1500,
+      imageUrl: data.imageUrl,
+      address: data.address,
+      description: data.description,
+      rentPrice: data.rentPrice,
       safetyScore: 8.5,
       // pros: ['Spacious rooms', 'Modern amenities', 'Close to public transportation'],
       // cons: ['Limited parking space', 'No pet-friendly policy'],
