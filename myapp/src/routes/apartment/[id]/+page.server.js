@@ -1,5 +1,7 @@
 import { fetchHousingData } from "$lib/data";
 import { generateSentimentForPlace } from "$lib/sentiment";
+import { calculateCommute } from "../../../lib/commute.js";
+import { safeScore } from "../../../lib/safety.js";
 
 export async function load({ params }) {
     let dataRaw = await fetchHousingData(1);
@@ -31,7 +33,17 @@ export async function load({ params }) {
 
     const address = place["geography"]["streetAddress"];
     const description = place["propertyType"];
-    const rentPrice = place["floorPlanSummary"]["price"]["formatted"]
+    const rentPrice = place["floorPlanSummary"]["price"]["formatted"];
 
-    return { pros, cons, imageUrl, address, description, rentPrice };
+    const latitude = place["geography"]["latitude"];
+    const longitude = place["geography"]["longitude"];
+    const safety = await safeScore(latitude, longitude);
+
+    const commuteTime = await calculateCommute(place["geography"]["streetAddress"] + " Blacksburg, Virginia");
+
+    const amenities = place["amenityGroups"].map((entry) => {
+        return {name: entry["categoryName"], items: entry["items"]};
+    });
+
+    return { pros, cons, imageUrl, address, description, rentPrice, safety, commuteTime, amenities };
 }

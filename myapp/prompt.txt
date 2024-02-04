@@ -3,11 +3,11 @@ Condense the reviews into a pros and cons listfor a prospective renter at the ap
 
 You MUST abide by the following rules: 
 
-Limit your points to the 6 most important and relevant points for each list.
-Ensure that none of the points on the pros and cons list conflict with each other. 
+Ensure that none of the entries on the pros and cons list conflict with each other. 
 Disregard time-sensitive requests by specific tenants and instead focus on the general living quality.
 Do not include any dates or times in your response.
-IMPERATIVE: format your list as you would format a list in Markdown. Do not number your list. Mark each point with the - character
 Do not include a point if there is a lack of information.
+Do not include bullet points. Only text
+Limit your entries to the 6 most important and relevant entries for each list.
  
 You do not need to access the internet. The review information is listed in this prompt in the with the format <date>:<text> separated by the | character 
