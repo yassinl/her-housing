@@ -10,8 +10,8 @@
     customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
     >Her Housing</Heading
   >
-  <P class="mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-    >You can now choose your home where you feel sale.</P
+  <P class="mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 mx-auto"
+    >You can now choose your home where you feel safe the most.</P
   >
   <Button href="/">
     Learn more

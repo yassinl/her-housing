@@ -8,7 +8,7 @@
 
 	
 
-		<nav>
+	<nav>
 		<ul>
 			<li>
 				<a href="/blog">Blog</a>
