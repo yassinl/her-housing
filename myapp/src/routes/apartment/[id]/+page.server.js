@@ -3,6 +3,19 @@ import { generateSentimentForPlace } from "$lib/sentiment";
 import { calculateCommute } from "../../../lib/commute.js";
 import { safeScore } from "../../../lib/safety.js";
 
+function removeUnwantedCharacters(inputArray) {
+    // Define the regex pattern to match HTML tags, *, and -
+    const regexPattern = /<[^>]*>|[*-]|^\s*\d+\.\s*|\n/g;
+  
+    // Function to apply the regex pattern and remove unwanted characters
+    const removeUnwantedChars = (inputString) => inputString.replace(regexPattern, '');
+  
+    // Map over the array and apply the function to each string
+    const resultArray = inputArray.map(removeUnwantedChars);
+  
+    return resultArray;
+}
+
 export async function load({ params }) {
     let dataRaw = await fetchHousingData(1);
     let data = dataRaw["data"];
@@ -17,10 +30,12 @@ export async function load({ params }) {
         [pros, cons] = sentiment.split("Cons:");
 
 
-        pros = pros.split('\n').filter((x) => x.trim() != "");
-        cons = cons.split('\n').filter((x) => x.trim() != "");
+        pros = pros.split('\n');
+        pros = removeUnwantedCharacters(pros).filter((x) => x.trim() != "");
+        cons = cons.split('\n');
+        cons = removeUnwantedCharacters(cons).filter((x) => x.trim() != "");
     } catch (ex) {
-        console.error("cannot do thing");
+        console.error("Unexpected error occured");
     }
 
     let imageUrl;
