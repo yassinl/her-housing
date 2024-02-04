@@ -11,8 +11,7 @@
     >Her Housing</Heading
   >
   <P class="mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
-    >Here at Flowbite we focus on markets where technology, innovation, and
-    capital can unlock long-term value and drive economic growth.</P
+    >You can now choose your home where you feel sale.</P
   >
   <Button href="/">
     Learn more
