@@ -40,7 +40,13 @@ export async function load({ params }) {
     const seoName = place["seoName"] || "";
     console.log(seoName.split("Now")[0]);
     
-    const sentiment = await generateSentimentForPlace(seoName.split("Now Accepting")[0] || seoName || "Default apartment");
+    // Only attempt sentiment analysis if we have a meaningful place name
+    let sentiment = null;
+    const placeName = seoName.split("Now Accepting")[0]?.trim();
+    if (placeName && placeName.length > 3 && placeName !== "Default apartment") {
+        sentiment = await generateSentimentForPlace(placeName);
+    }
+    
     // console.log(sentiment);
     let [pros, cons] = [["No user feedback received"], ["No user feedback received"]];
     try {
@@ -61,30 +67,48 @@ export async function load({ params }) {
     }
 
     let imageUrl;
-    if(place["media"]["images"][0]["source"] != null) {
+    if(place["media"]?.["images"]?.[0]?.["source"] != null) {
         imageUrl = place["media"]["images"][0]["source"];
-    } else if(place["media"]["mainPhoto"]["source"] != null) {
+    } else if(place["media"]?.["mainPhoto"]?.["source"] != null) {
         imageUrl = place["media"]["mainPhoto"]["source"];
     } else {
         imageUrl = "static/placeholder.webp"
     }
     imageUrl = imageUrl.replace(/{options}/g, '117');
 
-    const address = place["geography"]["streetAddress"];
-    const description = place["propertyType"];
-    const rentPrice = place["floorPlanSummary"]["price"]["formatted"];
+    const address = place["geography"]?.["streetAddress"] || "Address not available";
+    const description = place["propertyType"] || "Property type not specified";
+    const rentPrice = place["floorPlanSummary"]?.["price"]?.["formatted"] || "Price not available";
 
-    const latitude = place["geography"]["latitude"];
-    const longitude = place["geography"]["longitude"];
-    const safety = await safeScore(latitude, longitude);
+    const latitude = place["geography"]?.["latitude"];
+    const longitude = place["geography"]?.["longitude"];
+    const safety = (latitude && longitude) ? await safeScore(latitude, longitude) : 5; // Default safety score
 
-    const [_, commuteTime] = await calculateCommute(place["geography"]["streetAddress"] + " Blacksburg, Virginia");
+    const [_, commuteTime] = address !== "Address not available" 
+        ? await calculateCommute(address + " Blacksburg, Virginia")
+        : [null, "Commute time not available"];
 
-    const amenities = place["amenityGroups"].map(/** @param {any} entry */ (entry) => {
-        return {name: entry["categoryName"], items: entry["items"]};
-    });
+    const amenities = place["amenityGroups"]?.map(/** @param {any} entry */ (entry) => {
+        // Handle items that might be objects or strings
+        const items = entry["items"]?.map(/** @param {any} item */ (item) => {
+            if (typeof item === 'string') {
+                return item;
+            } else if (typeof item === 'object' && item !== null) {
+                // If item is an object, try to extract a meaningful string
+                return item.name || item.title || item.description || item.text || JSON.stringify(item);
+            }
+            return String(item);
+        }) || [];
+        
+        return {
+            name: entry["categoryName"] || "Features", 
+            items: items
+        };
+    }) || [];
 
-    const phone = place["leads"]["phone"]["formatted"];
+    console.log("Amenities structure:", JSON.stringify(amenities, null, 2));
+
+    const phone = place["leads"]?.["phone"]?.["formatted"] || "Phone not available";
 
     return { pros, cons, imageUrl, address, description, rentPrice, safety, commuteTime, amenities, phone };
 }

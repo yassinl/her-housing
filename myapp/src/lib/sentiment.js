@@ -63,12 +63,15 @@ async function generateSentiment(reviews) {
 
 /**
  * @param {string} placeName 
- * @returns 
+ * @returns {Promise<string>}
  */
 export async function generateSentimentForPlace(placeName) {
     return await getReviewsForPlace(placeName)
             .then((reviews) => generateSentiment(reviews))
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+                return "Pros:\nNo specific feedback available for this location.\n\nCons:\nNo specific concerns identified for this location.";
+            });
 }
 
 // async function main() {

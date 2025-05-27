@@ -18,6 +18,6 @@
 
 <div class="footer">
   <h1>Find Your Dream Home</h1>
-  <p>We're working to empower women!<p>
-  <p>Designed with ❤️ by Jerico, Drew, Yassin, and Elori</p>
+  <p>We're working to empower women!</p>
+  <p>Designed with ❤️ by <a href="#">Jerico</a>, <a href="#">Drew</a>, <a href="#">Yassin</a>, and <a href="#">Elori</a></p>
 </div>
