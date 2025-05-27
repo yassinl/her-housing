@@ -1,5 +1,11 @@
 const radius = 0.5;
 
+/**
+ * Calculate safety score based on latitude and longitude
+ * @param {number} latitude - The latitude coordinate
+ * @param {number} longitude - The longitude coordinate
+ * @returns {Promise<number>} Safety score from 0-10
+ */
 export async function safeScore(latitude, longitude) {
     const url = `https://vspsor.com/search/searchMap?lat=${latitude}&lng=${longitude}&r=${radius}`; // Replace with your actual API endpoint
 
@@ -45,5 +51,6 @@ export async function safeScore(latitude, longitude) {
         })
         .catch(error => {
             console.error(error.message);
+            return 0; // Return default safety score on error
         });
 }
